@@ -1,5 +1,6 @@
 package com.github.dependabot;
 
+import org.yaml.snakeyaml.LoaderOptions;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
@@ -14,7 +15,7 @@ public class DemoConfig {
         // when creating Constructor, so upgrading this dependency needs a code
         // change as well as the version bump.
         String yaml = "message: hello from the demo";
-        DemoConfig config = new Yaml(new Constructor(DemoConfig.class)).load(yaml);
+        DemoConfig config = new Yaml(new Constructor(DemoConfig.class, new LoaderOptions())).load(yaml);
         System.out.println(config.message);
     }
 }

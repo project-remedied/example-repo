@@ -7,14 +7,11 @@ DEMO_KEY = "local-demo-key-do-not-use-in-production"
 
 
 def create_token(payload):
-    # PyJWT 1.7.1 returns bytes here. PyJWT 2.x returns str, so the decode()
-    # call must be removed when upgrading.
-    return jwt.encode(payload, DEMO_KEY, algorithm="HS256").decode("utf-8")
+    return jwt.encode(payload, DEMO_KEY, algorithm="HS256")
 
 
 def read_token(token):
-    # PyJWT 2.x requires an explicit algorithm allowlist here.
-    return jwt.decode(token, DEMO_KEY)
+    return jwt.decode(token, DEMO_KEY, algorithms=["HS256"])
 
 
 if __name__ == "__main__":
